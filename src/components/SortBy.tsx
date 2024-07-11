@@ -1,16 +1,17 @@
-import { SetStateAction } from "react"
+
 
 type Sort = {
-    sortBy: string,
-    setSortBy: React.Dispatch<React.SetStateAction<string>>,
+    // sortBy: string,
+    // setSortBy: React.Dispatch<React.SetStateAction<string>>,
     onOptionChangeHandler: (event:any) => void
 }
 
-const SortBy = ({sortBy, setSortBy, onOptionChangeHandler}: Sort) => {
+const SortBy = ({onOptionChangeHandler}: Sort) => {
     return (
-        <div>
-            <h3>Sort porducts by:</h3>
-            <select onChange={onOptionChangeHandler}>
+        <div className="sort">
+            <h4>Sort porducts by:</h4>
+            <select name="select-sort" onChange={onOptionChangeHandler}>
+                <option>Choose..</option>
                 <option value="higher">Higher Price</option>
                 <option value="lower">Lower Price</option>
                 <option value="alphabetically">Alphabetically</option>

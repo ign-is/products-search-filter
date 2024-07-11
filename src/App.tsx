@@ -23,21 +23,24 @@ function App() {
   const onOptionChangeHandler = (event: any) => {
     let change = event.target.value;
     setSortBy(change);
+    let arrayCopy = [...products];
     console.log(change)
     if(change === 'higher') {
-      console.log(products.sort((a, b) => b.price - a.price));
+      setProducts(arrayCopy.sort((a, b) => b.price - a.price));
     } else if (change === 'lower') {
-      console.log(products.sort((a, b) => a.price - b.price));
+      setProducts(arrayCopy.sort((a, b) => a.price - b.price));
     } else {
-      console.log(products.sort((a, b) => a.title.localeCompare(b.title)));
+      setProducts(arrayCopy.sort((a, b) => a.title.localeCompare(b.title)));
     }
   };
 
   return (
     <main>
-      <h1>Tienda digitaloncy</h1>
-      <input name="text" placeholder="tv" type="text" onChange={(e) => setQuery(e.target.value)} value={query} />
-      <SortBy sortBy={sortBy} setSortBy={setSortBy} onOptionChangeHandler={onOptionChangeHandler}/>
+      <h1>Digital store</h1>
+      <div className="search">
+        <input name="text" placeholder="Search product.." type="text" onChange={(e) => setQuery(e.target.value)} value={query} />
+        <SortBy  onOptionChangeHandler={onOptionChangeHandler}/>
+      </div>
       { !isLoading ? 
       (<ul>
           {products.map((product) => (
